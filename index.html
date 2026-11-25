@@ -1,1 +1,447 @@
-pagina web de alejandro
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f4">
+  <meta name="description" content="Perfil profesional de un investigador en ciencias de los materiales.">
+  <title>Investigación en ciencias de los materiales</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172a2a;
+      --muted: #647574;
+      --paper: #f5f7f4;
+      --surface: #fff;
+      --line: #dce5df;
+      --green: #176b58;
+      --green-dark: #105341;
+      --mint: #d9eee3;
+      --serif: Georgia, "Times New Roman", serif;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 320px; }
+    a { color: inherit; }
+
+    .page-shell {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 84px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 650;
+      text-decoration: none;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 11px;
+      color: white;
+      background: var(--green);
+      font-family: var(--serif);
+      font-size: 20px;
+    }
+
+    nav { display: flex; gap: 30px; }
+    nav a {
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    nav a:hover, nav a:focus-visible { color: var(--green); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      align-items: center;
+      gap: 64px;
+      padding: 82px 0 90px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 24px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: 21px;
+      height: 1px;
+      content: "";
+      background: currentColor;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 620px;
+      margin-bottom: 22px;
+      font-family: var(--serif);
+      font-size: clamp(43px, 6vw, 72px);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: 1.04;
+    }
+    h1 span { color: var(--green); }
+    .hero-copy {
+      max-width: 520px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 47px;
+      align-items: center;
+      gap: 12px;
+      padding: 0 19px;
+      border: 1px solid var(--green);
+      border-radius: 6px;
+      color: white;
+      background: var(--green);
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--green-dark); }
+    .button span { font-size: 17px; }
+
+    .visual {
+      position: relative;
+      display: grid;
+      min-height: 385px;
+      overflow: hidden;
+      place-items: center;
+      border: 1px solid #d5e3d9;
+      border-radius: 12px;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.92) 0 11%, transparent 11.4%),
+        radial-gradient(ellipse at 50% 50%, transparent 0 28%, rgba(255,255,255,.5) 28.3% 28.7%, transparent 29%),
+        linear-gradient(140deg, #e1efe5, #c8dfd3);
+    }
+    .visual::before, .visual::after {
+      position: absolute;
+      width: 245px;
+      height: 245px;
+      border: 1px solid rgba(23, 107, 88, .3);
+      border-radius: 50%;
+      content: "";
+    }
+    .visual::before { transform: scaleX(.58) rotate(45deg); }
+    .visual::after { transform: scaleX(.58) rotate(-45deg); }
+    .orbit {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 4px solid #f5f7f4;
+      border-radius: 50%;
+      background: #23876c;
+      box-shadow: 0 0 0 1px rgba(23, 107, 88, .2);
+    }
+    .orbit-one { top: 24%; left: 31%; }
+    .orbit-two { top: 31%; right: 26%; width: 13px; height: 13px; background: #d18b52; }
+    .orbit-three { bottom: 24%; left: 39%; width: 14px; height: 14px; }
+    .atom-core {
+      z-index: 1;
+      display: grid;
+      width: 75px;
+      height: 75px;
+      place-items: center;
+      border: 1px solid rgba(23, 107, 88, .2);
+      border-radius: 50%;
+      color: var(--green-dark);
+      background: rgba(255, 255, 255, .86);
+      font-family: var(--serif);
+      font-size: 31px;
+    }
+    .visual-note {
+      position: absolute;
+      right: 18px;
+      bottom: 17px;
+      color: #567166;
+      font-size: 10px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: 71px 0;
+      border-top: 1px solid var(--line);
+    }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+    .section-heading .eyebrow { margin-bottom: 12px; }
+    h2 {
+      margin-bottom: 0;
+      font-family: var(--serif);
+      font-size: clamp(33px, 4vw, 46px);
+      font-weight: 400;
+      letter-spacing: -.04em;
+    }
+    .section-intro {
+      max-width: 400px;
+      margin-bottom: 2px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+    }
+    .about-grid p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+    .about-grid p:first-child { color: var(--ink); }
+
+    .interests {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .interest-card {
+      min-height: 195px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .interest-card:hover { transform: translateY(-3px); border-color: #9dc5b1; }
+    .card-number {
+      display: block;
+      margin-bottom: 25px;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: 17px;
+    }
+    h3 {
+      margin-bottom: 9px;
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 400;
+      letter-spacing: -.02em;
+    }
+    .interest-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .statement {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      margin: 16px 0 76px;
+      padding: 36px 40px;
+      border-radius: 9px;
+      background: var(--mint);
+    }
+    .statement p {
+      max-width: 700px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 31px);
+      letter-spacing: -.025em;
+      line-height: 1.4;
+    }
+    .statement-mark {
+      flex: 0 0 auto;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 23px 0 30px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    footer p { margin: 0; }
+
+    :focus-visible { outline: 3px solid #d18b52; outline-offset: 4px; }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; gap: 39px; padding: 61px 0 68px; }
+      .visual { min-height: 315px; }
+      .section { padding: 57px 0; }
+      .section-heading { align-items: start; flex-direction: column; gap: 15px; }
+      .about-grid { grid-template-columns: 1fr; gap: 18px; }
+      .interests { grid-template-columns: 1fr; }
+      .interest-card { min-height: auto; }
+      .card-number { margin-bottom: 15px; }
+      .statement { margin-bottom: 58px; padding: 28px; }
+    }
+    @media (max-width: 480px) {
+      .page-shell { width: min(100% - 36px, 1120px); }
+      .site-header { min-height: 72px; }
+      nav { gap: 16px; }
+      nav a { font-size: 12px; }
+      .brand { gap: 8px; font-size: 12px; }
+      .brand-mark { width: 30px; height: 30px; }
+      .hero { padding-top: 49px; }
+      .statement { align-items: start; gap: 15px; }
+      .statement-mark { font-size: 34px; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Inicio">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span>Perfil profesional</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#intereses">Intereses</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div>
+          <p class="eyebrow">Ciencia · Investigación · Innovación</p>
+          <h1>Comprender la materia.<br><span>Diseñar el futuro.</span></h1>
+          <p class="hero-copy">
+            Investigador en ciencias de los materiales, interesado en explorar
+            cómo la composición y la estructura dan forma a las propiedades
+            que hacen posibles nuevas tecnologías.
+          </p>
+          <a class="button" href="#sobre-mi">Conoce mi perfil <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="visual" role="img" aria-label="Ilustración abstracta de una estructura atómica">
+          <span class="orbit orbit-one" aria-hidden="true"></span>
+          <span class="orbit orbit-two" aria-hidden="true"></span>
+          <span class="orbit orbit-three" aria-hidden="true"></span>
+          <span class="atom-core" aria-hidden="true">M</span>
+          <span class="visual-note">Materia · estructura · función</span>
+        </div>
+      </section>
+
+      <section class="section" id="sobre-mi">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Sobre mí</p>
+            <h2>De la estructura<br>a la aplicación.</h2>
+          </div>
+          <p class="section-intro">
+            La ciencia de materiales conecta la investigación fundamental con
+            soluciones que pueden transformar nuestro día a día.
+          </p>
+        </div>
+        <div class="about-grid">
+          <p>
+            Mi trabajo como investigador se centra en entender los materiales:
+            cómo se forman, cómo se comportan y cómo podemos aprovechar sus
+            propiedades. Cada pregunta abre una oportunidad para descubrir
+            algo nuevo.
+          </p>
+          <p>
+            Me motiva el diálogo entre disciplinas, el rigor experimental y la
+            posibilidad de convertir conocimiento científico en avances útiles.
+            Creo en una investigación colaborativa, curiosa y comprometida con
+            los retos del presente.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="intereses">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Áreas de interés</p>
+            <h2>Preguntas que impulsan<br>la investigación.</h2>
+          </div>
+          <p class="section-intro">
+            Un campo amplio donde la química, la física y la ingeniería
+            convergen para abrir nuevas posibilidades.
+          </p>
+        </div>
+        <div class="interests">
+          <article class="interest-card">
+            <span class="card-number">01</span>
+            <h3>Materiales funcionales</h3>
+            <p>Relación entre composición, estructura y propiedades para diseñar materiales con nuevas capacidades.</p>
+          </article>
+          <article class="interest-card">
+            <span class="card-number">02</span>
+            <h3>Caracterización</h3>
+            <p>Observar y analizar materiales a distintas escalas para comprender su comportamiento.</p>
+          </article>
+          <article class="interest-card">
+            <span class="card-number">03</span>
+            <h3>Innovación sostenible</h3>
+            <p>Explorar materiales y procesos que contribuyan a un desarrollo tecnológico más responsable.</p>
+          </article>
+        </div>
+      </section>
+
+      <aside class="statement">
+        <p>“La innovación comienza cuando entendemos la materia a una escala nueva.”</p>
+        <span class="statement-mark" aria-hidden="true">“</span>
+      </aside>
+    </main>
+
+    <footer>
+      <p>Investigación en ciencias de los materiales</p>
+      <p>Curiosidad por la materia y sus posibilidades.</p>
+    </footer>
+  </div>
+</body>
+</html>
